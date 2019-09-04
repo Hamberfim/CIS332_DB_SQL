@@ -1,0 +1,9 @@
+Create a SQL script named chapter2.sql that contains the commands necessary to answer the 10 Hands-On Assignment problems on pages 54-55 of the textbook.
+
+Please include a comment with your name, along with one identifying each problem.  
+
+Each command in the script should be terminated with a semi-colon.
+
+Upon completion, submit your SQL script as an attachment to this assignment.
+
+Multiple submissions are allowed and the most recent will be graded.
