@@ -1,0 +1,3 @@
+Create a SQL script name chapter3.sql that contains commands for the ten Hands On Assignment problems.
+
+Please include comments as appropriate.  Upon completion, submit your script as an attachment to this assignment.
