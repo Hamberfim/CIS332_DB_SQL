@@ -23,6 +23,14 @@ FROM books b, customers c INNER JOIN orders o
 ON c.customer# = o.customer#
 WHERE State = 'FL' AND category = 'COMPUTER';
 
+SELECT DISTINCT (c.Firstname || ' ' || c.Lastname) AS "Customer Name", b.category AS "Book Category",
+    c.state,
+    b.category
+FROM customers c JOIN  orders o ON c.customer# = o.customer#
+                 JOIN orderitems oi on o.order# = oi.order#
+                 JOIN books b ON oi.isbn = b.isbn
+WHERE c.State = 'FL' AND b.category = 'COMPUTER';
+
 -- Problem 4
 
 SELECT DISTINCT (c.firstname || ' ' || c.lastname) AS "Customer Name", b.title 
@@ -32,6 +40,12 @@ AND o.order# = m.order#
 AND m.ISBN = b.ISBN
 AND c.lastname = 'LUCAS';
 
+SELECT DISTINCT (c.Firstname || ' ' || c.Lastname) AS "Customer Name", b.title
+FROM customers c JOIN  orders o ON c.customer# = o.customer#
+                 JOIN orderitems oi on o.order# = oi.order#
+                 JOIN books b ON oi.isbn = b.isbn
+WHERE c.firstname = 'JAKE' AND c.lastname = 'LUCAS';
+
 -- Problem 5
 
 SELECT DISTINCT (c.firstname || ' ' || c.lastname) AS "Customer Name", b.title, o.orderdate, (m.paideach - b.cost) AS "Profit"
@@ -40,6 +54,13 @@ WHERE c.customer# = o.customer#
 AND o.order# = m.order#
 AND m.ISBN = b.ISBN
 AND c.lastname = 'LUCAS'
+ORDER BY o.orderdate, "Profit" DESC;
+
+SELECT (c.Firstname || ' ' || c.Lastname) AS "Customer Name", b.title, o.orderdate, (oi.paideach - b.cost) AS "Profit"
+FROM customers c JOIN  orders o ON c.customer# = o.customer#
+                 JOIN orderitems oi on o.order# = oi.order#
+                 JOIN books b ON oi.isbn = b.isbn
+WHERE c.firstname = 'JAKE' AND c.lastname = 'LUCAS'
 ORDER BY o.orderdate, "Profit" DESC;
 
 -- Problem 6
@@ -56,6 +77,12 @@ SELECT b.title, b.retail, p.gift
 FROM books b, promotion p
 WHERE b.title = 'SHORTEST POEMS'
 AND b.retail BETWEEN p.minretail AND p.maxretail;
+
+
+SELECT b.title, b.retail, p.gift
+FROM books b JOIN promotion p
+ON b.retail BETWEEN p.minretail AND p.maxretail
+WHERE b.title = 'SHORTEST POEMS'; 
 
 -- Problem 8
 
@@ -77,6 +104,11 @@ ON o.order# = m.order#
 LEFT OUTER JOIN customers c 
 ON c.customer# = o.customer#
 ORDER BY b.title;
+
+
+SELECT isbn FROM books
+MINUS
+SELECT DISTINCT isbn FROM orderitems;
 
 -- Problem 10
 
