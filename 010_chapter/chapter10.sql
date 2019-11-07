@@ -2,6 +2,14 @@
    CIS332 - Chapter 10 Assignment
 */
 
+-- EXTRA 
+
+SELECT customer#, state, DECODE (state, 'CA', 0.08,
+                                        'FL', 0.07,
+                                        'GA', 0.06,
+                                              0.05) AS "Sales Tax Rate"
+FROM customers
+WHERE state IN('CA', 'FL', 'GA', 'IA', 'TX');
 
 -- Problem 1
 
